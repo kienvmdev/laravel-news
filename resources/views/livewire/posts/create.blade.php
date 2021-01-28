@@ -8,7 +8,7 @@
         <!-- This element is to trick the browser into centering the modal contents. -->
         <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>​
 
-        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-5xl sm:w-full"
             role="dialog" aria-modal="true" aria-labelledby="modal-headline">
             <form>
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
@@ -22,9 +22,10 @@
                         </div>
                         <div class="mb-4">
                             <label for="content" class="block text-gray-700 text-sm font-bold mb-2">Content:</label>
-                            <textarea rows="10"
+                            <livewire:markdown-page />
+                            <!-- <textarea rows="10"
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="content" wire:model="content" placeholder="Enter Content"></textarea>
+                                id="content" wire:model="content" placeholder="Enter Content"></textarea> -->
                             @error('content') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
                         <div class="mb-4">
@@ -39,7 +40,7 @@
                             @error('category') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
 
-                        <div class="mb-4">
+                        <!-- <div class="mb-4">
                             <div x-data="{ isUploading: false, progress: 0 }"
                                 x-on:livewire-upload-start="isUploading = true"
                                 x-on:livewire-upload-finish="isUploading = false"
@@ -59,7 +60,7 @@
                                     wire:model="photos">
                                 @error('photos') <span class="text-red-500">{{ $message }}</span>@enderror
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="mb-4">
                             <label for="tagids" class="block text-gray-700 text-sm font-bold mb-2">Tags:</label>

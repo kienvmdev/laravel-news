@@ -17,6 +17,7 @@
         "laravel/sanctum": "^2.6",
         "laravel/telescope": "^4.3",
         "laravel/tinker": "^2.5",
+        "sinnbeck/markdom": "^1.0",
         "livewire/livewire": "^2.0"
     },
     "require-dev": {
