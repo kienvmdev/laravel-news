@@ -60,6 +60,15 @@ return [
             'javascript',
             'php',
             'css',
+            'bash',
+            'go',
+            'java',
+            'json',
+            'scss',
+            'less',
+            'python',
+            'sql',
+            'vue',
         ],
     ],
 
@@ -73,9 +82,9 @@ return [
          * Here you can define which elements will receive id tags
          */
         'elements' => [
-            'h2',
             'h3',
             'h4',
+            'h5',
         ],
 
         /**
