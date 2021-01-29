@@ -23,7 +23,7 @@ class CategoryFactory extends Factory
     {
         return [
             'title' => $this->faker->word,
-            'color' => $this->faker->hexColor,
+            'desc' => $this->faker->word,
         ];
     }
 }

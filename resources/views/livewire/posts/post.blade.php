@@ -14,22 +14,9 @@
                         class="underline">{{ $post->category->title }}</a>
                     &nbsp;on&nbsp;{{ $post->updated_at->format('F, d Y') }}
                 </div>
-                <div class="grid grid-flow-col">
-                    @foreach ($post->images as $image)
-                        <div class="px-6 py-4">
-                            <img src="{{ $image->url }}" alt="{{ $image->description }}" width="300" height="200">
-                        </div>
-                    @endforeach
-                </div>
-                <div class="grid grid-flow-col">
-                    @foreach ($post->videos as $video)
-                        <div class="px-6 py-4">
-                            <img src="{{ $video->url }}" alt="{{ $video->title }}" width="300" height="200">
-                        </div>
-                    @endforeach
-                </div>
+                
                 <div class="text-gray-700 text-base">
-                    {!! $post->content !!}
+                    @markdom((string)$post->content)
                 </div>
                 <div class="flex">
                     @php

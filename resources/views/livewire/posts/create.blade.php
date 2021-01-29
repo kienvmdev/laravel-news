@@ -10,26 +10,46 @@
 
         <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-5xl sm:w-full"
             role="dialog" aria-modal="true" aria-labelledby="modal-headline">
-            <form>
+            <form autocomplete="off">
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div class="">
                         <div class="mb-4">
-                            <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Title:</label>
+                            <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Title</label>
                             <input type="text"
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="title" placeholder="Enter Title" wire:model="title">
                             @error('title') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
                         <div class="mb-4">
-                            <label for="content" class="block text-gray-700 text-sm font-bold mb-2">Content:</label>
-                            <livewire:markdown-page />
-                            <!-- <textarea rows="10"
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="content" wire:model="content" placeholder="Enter Content"></textarea> -->
+                            <label for="content" class="block text-gray-700 text-sm font-bold mb-2">Content</label>
+                            <div class="h-96 flex flex-col">
+                                @markdomStyles($theme)
+                                <div class="inline-block relative w-64">
+                                    <select wire:model="theme" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                                        @foreach(Markdom::getAvailableThemes() as $style)
+                                            <option value="{{$style}}">{{$style}}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                                    </div>
+                                </div>
+
+                                <div class="flex flex-row flex-grow">
+                                    <div class="py-3 flex-1">
+                                        <textarea wire:model="content" id="content" class="border h-22 w-full p-2 h-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Content"></textarea>
+                                    </div>
+                                    <div class="p-3 flex-1">
+                                        <div class="border h-22 w-full p-2 h-full">
+                                            @markdom((string)$content)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             @error('content') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
                         <div class="mb-4">
-                            <label for="category" class="block text-gray-700 text-sm font-bold mb-2">Category:</label>
+                            <label for="category" class="block text-gray-700 text-sm font-bold mb-2">Category</label>
                             <select name="category" id="category" wire:model="category"
                                 class="shadow appearance-none w-full border text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline">
                                 <option value="" selected>Select Category</option>
@@ -40,30 +60,8 @@
                             @error('category') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
 
-                        <!-- <div class="mb-4">
-                            <div x-data="{ isUploading: false, progress: 0 }"
-                                x-on:livewire-upload-start="isUploading = true"
-                                x-on:livewire-upload-finish="isUploading = false"
-                                x-on:livewire-upload-error="isUploading = false"
-                                x-on:livewire-upload-progress="progress = $event.detail.progress">
-                                <div class="flex">
-                                    <label for="photos"
-                                        class="block text-gray-700 text-sm font-bold mb-2">Images:</label>
-                                    {{-- <div class="px-2" wire:loading
-                                        wire:target="photos">Uploading</div> --}}
-                                    <div x-show="isUploading" class="px-2">
-                                        <progress max="100" x-bind:value="progress"></progress>
-                                    </div>
-                                </div>
-                                <input type="file" multiple name="photos" id="photos"
-                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    wire:model="photos">
-                                @error('photos') <span class="text-red-500">{{ $message }}</span>@enderror
-                            </div>
-                        </div> -->
-
                         <div class="mb-4">
-                            <label for="tagids" class="block text-gray-700 text-sm font-bold mb-2">Tags:</label>
+                            <label for="tagids" class="block text-gray-700 text-sm font-bold mb-2">Tags</label>
                             <select multiple name="tagids[]" id="tagids[]" wire:model="tagids"
                                 class="shadow appearance-none w-full border text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline">
                                 @foreach ($tags as $tag)

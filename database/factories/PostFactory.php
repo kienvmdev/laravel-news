@@ -24,7 +24,8 @@ class PostFactory extends Factory
         return [
             'title' => $this->faker->sentence,
             'content' => $this->faker->paragraph,
-            'author_id' => $this->faker->numberBetween(1, 100),
+            'theme' => 'default',
+            'author_id' => $this->faker->numberBetween(1, 11),
             'category_id' => $this->faker->numberBetween(1, 10),
         ];
     }

@@ -13,6 +13,7 @@ class Post extends Model
     protected $fillable = [
         'title',
         'content',
+        'theme',
         'post_type',
         'meta_data',
         'category_id',
@@ -29,14 +30,6 @@ class Post extends Model
 
     public function comments(){
         return $this->hasMany(Comment::class)->with(['author']);
-    }
-
-    public function images(){
-        return $this->hasMany(Image::class);
-    }
-
-    public function videos(){
-        return $this->hasMany(Video::class);
     }
 
     public function tags(){

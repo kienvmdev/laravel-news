@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class Categories extends Component
 {
-    public $categories, $title, $color, $category_id;
+    public $categories, $title, $desc, $category_id;
     public $isOpen = 0;
 
     public function render()
@@ -20,12 +20,12 @@ class Categories extends Component
     {
         $this->validate([
             'title' => 'required',
-            'color' => 'required',
+            'desc' => 'required',
         ]);
 
         Category::updateOrCreate(['id' => $this->category_id], [
             'title' => $this->title,
-            'color' => $this->color
+            'desc' => $this->desc
         ]);
 
         session()->flash(
@@ -48,7 +48,7 @@ class Categories extends Component
         $category = Category::findOrFail($id);
         $this->category_id = $id;
         $this->title = $category->title;
-        $this->color = $category->color;
+        $this->desc = $category->desc;
 
         $this->openModal();
     }
@@ -72,7 +72,7 @@ class Categories extends Component
     private function resetInputFields()
     {
         $this->title = '';
-        $this->color = '';
+        $this->desc = '';
         $this->category_id = '';
     }
 }

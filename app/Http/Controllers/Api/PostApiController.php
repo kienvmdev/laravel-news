@@ -12,14 +12,14 @@ class PostApiController extends Controller
 {
     public function index()
     {
-        $posts = Post::with(['author', 'category', 'tags', 'images', 'videos', 'comments'])->paginate();
+        $posts = Post::with(['author', 'category', 'tags', 'comments'])->paginate();
         return PostResource::collection($posts);
     }
 
     public function show($id)
     {
         $post = Post::with([
-            'author', 'category', 'tags', 'images', 'videos', 'comments' => function ($query) {
+            'author', 'category', 'tags', 'comments' => function ($query) {
                 $query->with(['author']);
             }
         ])->find($id);

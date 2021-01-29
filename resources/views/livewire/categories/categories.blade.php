@@ -28,7 +28,7 @@
                         <tr class="bg-gray-100">
                             <th class="px-4 py-2 w-20">No.</th>
                             <th class="px-4 py-2">Title</th>
-                            <th class="px-4 py-2">Color</th>
+                            <th class="px-4 py-2">Description</th>
                             <th class="px-4 py-2">Action</th>
                         </tr>
                     </thead>
@@ -38,7 +38,7 @@
                         <tr>
                             <td class="border px-4 py-2"><?php echo $count++; ?></td>
                             <td class="border px-4 py-2">{{ $category->title }}</td>
-                            <td class="border px-4 py-2"><span style="background-color: {{ $category->color }};">&emsp;</span> {{ $category->color }}</td>
+                            <td class="border px-4 py-2">{{ $category->desc }}</td>
                             <td class="border px-4 py-2">
                             <button
                                 wire:click="edit({{ $category->id }})"

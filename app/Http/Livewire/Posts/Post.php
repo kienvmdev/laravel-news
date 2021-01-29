@@ -12,7 +12,7 @@ class Post extends Component
 
     public function mount($id)
     {
-        $this->post = PostModel::with(['author', 'comments', 'category', 'images', 'videos', 'tags'])->find($id);
+        $this->post = PostModel::with(['author', 'comments', 'category', 'tags'])->find($id);
     }
 
     public function render()

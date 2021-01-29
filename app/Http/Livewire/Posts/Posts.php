@@ -2,25 +2,23 @@
 namespace App\Http\Livewire\Posts;
 
 use App\Models\Category;
-use App\Models\Image;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Livewire\Component;
-use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 
 
 class Posts extends Component
 {
     use WithPagination;
-    use WithFileUploads;
 
-    public $title, $content, $category, $post_id;
+    public $title, $category, $post_id;
+    public $theme = 'default';
+    public $content = null;
     public $tagids = array();
-    public $photos = [];
     public $isOpen = 0;
 
     public function render()
@@ -38,38 +36,16 @@ class Posts extends Component
             'title' => 'required',
             'content' => 'required',
             'category' => 'required',
-            'photos.*' => 'image|max:1024',
         ]);
 
         // Update or Insert Post
         $post = Post::updateOrCreate(['id' => $this->post_id], [
             'title' => $this->title,
             'content' => $this->content,
+            'theme' => $this->theme,
             'category_id' => intVal($this->category),
             'author_id' => Auth::user()->id,
         ]);
-
-        // Image upload and store name in db
-        if (count($this->photos) > 0) {
-            Image::where('post_id', $post->id)->delete();
-            $counter = 0;
-            foreach ($this->photos as $photo) {
-
-                $storedImage = $photo->store('public/photos');
-
-                $featured = false;
-                if($counter == 0 ){
-                    $featured = true;
-                }
-                Image::create([
-                    'url' => url('storage'. Str::substr($storedImage, 6)),
-                    'title' => '-',
-                    'post_id' => $post->id,
-                    'featured' => $featured
-                ]);
-                $counter++;
-            }
-        }
 
         // Post Tag mapping
         if (count($this->tagids) > 0) {
@@ -109,6 +85,7 @@ class Posts extends Component
         $this->post_id = $id;
         $this->title = $post->title;
         $this->content = $post->content;
+        $this->theme = $post->theme;
         $this->category = $post->category_id;
         $this->tagids = $post->tags->pluck('id');
 
@@ -135,9 +112,9 @@ class Posts extends Component
     {
         $this->title = null;
         $this->content = null;
+        $this->theme = 'default';
         $this->category = null;
         $this->tagids = null;
-        $this->photos = null;
         $this->post_id = null;
     }
 }
