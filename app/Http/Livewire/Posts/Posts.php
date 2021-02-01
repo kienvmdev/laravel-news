@@ -76,6 +76,8 @@ class Posts extends Component
         DB::table('post_tag')->where('post_id', $id)->delete();
 
         session()->flash('message', 'Post Deleted Successfully.');
+
+        return redirect('/dashboard/posts');
     }
 
     public function edit($id)

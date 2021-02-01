@@ -13,13 +13,13 @@ class PostSearch extends Component
 
     public function mount()
     {
-        $this->resetFrom();
+        $this->reset('query', 'posts', 'highlightIndex');
     }
 
     public function resetFrom()
     {
         $this->query = '';
-        $this->contacts = [];
+        $this->posts = [];
         $this->highlightIndex = 0;
     }
 
