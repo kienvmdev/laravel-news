@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Categories;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -12,7 +13,7 @@ use Livewire\WithPagination;
 
 class Categoryposts extends Component
 {
-    use WithPagination;
+    use WithPagination,AuthorizesRequests;
 
     public $title, $content, $category, $post_id;
     public $tagids = array();
@@ -28,7 +29,7 @@ class Categoryposts extends Component
     public function render()
     {
         return view('livewire.posts.posts', [
-            'posts' => Post::where('category_id', $this->cid)->orderBy('id', 'desc')->paginate(),
+            'posts' => Post::where('category_id', $this->cid)->orderBy('id', 'desc')->simplePaginate(),
             'categories' => Category::all(),
             'tags' => Tag::all(),
         ]);

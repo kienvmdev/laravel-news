@@ -4,16 +4,20 @@ namespace App\Http\Livewire\Categories;
 
 use App\Models\Category;
 use Livewire\Component;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Categories extends Component
 {
-    public $categories, $title, $desc, $category_id;
+    use AuthorizesRequests;
+
+    public $title, $desc, $category_id;
     public $isOpen = 0;
 
     public function render()
     {
-        $this->categories = Category::all();
-        return view('livewire.categories.categories');
+        return view('livewire.categories.categories', [
+            'categories'=>Category::orderBy('id', 'desc')->paginate(10)
+        ]);
     }
 
     public function store()
@@ -35,12 +39,16 @@ class Categories extends Component
 
         $this->closeModal();
         $this->resetInputFields();
+
+        return redirect('/dashboard/categories');
     }
 
     public function delete($id)
     {
         Category::find($id)->delete();
         session()->flash('message', 'Category Deleted Successfully.');
+
+        return redirect('/dashboard/categories');
     }
 
     public function edit($id)
@@ -51,6 +59,8 @@ class Categories extends Component
         $this->desc = $category->desc;
 
         $this->openModal();
+
+        return redirect('/dashboard/categories');
     }
 
     public function create()

@@ -39,7 +39,7 @@
                                     <div class="py-3 flex-1">
                                         <textarea wire:model="content" id="content" class="border h-22 w-full p-2 h-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Content"></textarea>
                                     </div>
-                                    <div class="p-3 flex-1">
+                                    <div class="pl-3 pt-3 pb-3 flex-1">
                                         <div class="border h-22 w-full p-2 h-full">
                                             @markdom((string)$content)
                                         </div>

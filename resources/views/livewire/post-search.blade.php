@@ -8,8 +8,7 @@
         wire:keydown.tab="reset"
         wire:keydown.ArrowUp="decrementHighlight"
         wire:keydown.ArrowDown="incrementHighlight"
-        wire:keydown.enter="selectPost"
-    />
+        wire:keydown.enter="selectPost"/>
 
     @if(!empty($query))
         <div class="fixed top-0 right-0 bottom-0 left-0" wire:click="reset"></div>
@@ -28,11 +27,11 @@
                     <p class="text-red-400">No results!</p>
                 </div>
             @endif
-            <div wire:loading class="absolute z-10 list-group bg-white w-full rounded-t-none shadow-lg">
+            <!--<div wire:loading class="absolute z-10 list-group bg-white w-full rounded-t-none shadow-lg">
                 <div class="list-item">
                     <p class="text-red-400">Searching...</p>
                 </div>
-            </div>
+            </div>-->
         </div>
     @endif
 </div>

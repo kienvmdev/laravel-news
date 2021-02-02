@@ -1,11 +1,9 @@
-{{-- @author MDITech <mditech.net@gmail.com> --}}
-
 <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
         Tags
     </h2>
 </x-slot>
-<div class="py-12">
+<div class="py-6">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-2">
             @if (session()->has('message'))
@@ -18,9 +16,8 @@
                 </div>
             @endif
             <div class="bg-white text-right">
-                <button
-                    wire:click="create()"
-                    class="inline-flex items-center px-4 py-2 my-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 active:bg-green-900 focus:outline-none focus:border-green-900 focus:shadow-outline-green disabled:opacity-25 transition ease-in-out duration-150">
+                <button wire:click="create()"
+                    class="inline-flex items-center px-4 py-2 my-2 bg-green-400 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 active:bg-green-900 focus:outline-none focus:border-green-900 focus:shadow-outline-green disabled:opacity-25 transition ease-in-out duration-150">
                     New Tag
                 </button>
             </div>
@@ -31,8 +28,8 @@
                 <thead>
                     <tr class="bg-gray-100">
                         <th class="px-4 py-2 w-20">No.</th>
-                        <th class="px-4 py-2">Title</th>
-                        <th class="px-4 py-2 text-center">Action</th>
+                        <th class="px-4 py-2 text-left">Title</th>
+                        <th class="px-4 py-2 text-center w-40">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,8 +39,7 @@
                         <td class="border px-4 py-2"><?php echo $count++; ?></td>
                         <td class="border px-4 py-2">{{ $tag->title }}</td>
                         <td class="border px-4 py-2 text-center">
-                        <button
-                            wire:click="edit({{ $tag->id }})"
+                        <button wire:click="edit({{ $tag->id }})"
                             class="inline-flex items-center px-1 py-1 bg-yellow-400 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-400 active:bg-yellow-400 focus:outline-none focus:border-yellow-400 focus:shadow-outline-yellow 4isabled:opacity-25 transition ease-in-out duration-150">
                             <svg class="h-6 w-6 text-white-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path
@@ -59,8 +55,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
                             </svg>
                         </a>
-                        <button
-                            wire:click="delete({{ $tag->id }})"
+                        <button wire:click="delete({{ $tag->id }})"
                             class="inline-flex items-center justify-center px-1 py-1 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-600 transition ease-in-out duration-150">
                             <svg class="h-6 w-6 text-white-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path
@@ -76,6 +71,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="py-4">
+                {{ $tags->links() }}
+            </div>
         </div>
     </div>
 </div>

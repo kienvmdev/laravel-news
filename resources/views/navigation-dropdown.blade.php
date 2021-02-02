@@ -17,14 +17,14 @@
                     </x-jet-nav-link>
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('categories') }}" :active="request()->routeIs('categories')">
-                            {{ __('Categories') }}
+                        <x-jet-nav-link href="{{ route('posts') }}" :active="request()->routeIs('posts')">
+                            {{ __('Posts') }}
                         </x-jet-nav-link>
                     </div>
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('posts') }}" :active="request()->routeIs('posts')">
-                            {{ __('Posts') }}
+                        <x-jet-nav-link href="{{ route('categories') }}" :active="request()->routeIs('categories')">
+                            {{ __('Categories') }}
                         </x-jet-nav-link>
                     </div>
 
@@ -112,9 +112,8 @@
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
-                            <x-jet-dropdown-link href="{{ route('logout') }}"
-                                                onclick="event.preventDefault();
-                                                            this.closest('form').submit();">
+                            <x-jet-dropdown-link href="{{ route('logout') }}" onclick="event.preventDefault();
+                                this.closest('form').submit();">
                                 {{ __('Logout') }}
                             </x-jet-dropdown-link>
                         </form>

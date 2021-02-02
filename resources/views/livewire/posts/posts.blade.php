@@ -17,65 +17,60 @@
                         </div>
                     </div>
                 @endif
-                <div class="bg-white pt-5 px-4">
-                    <livewire:post-search />
-                </div>
                 <div class="bg-white px-4">
-                    <button wire:click="create()"
-                            class="inline-flex items-center px-4 py-2 my-3 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 active:bg-green-600 focus:outline-none focus:border-green-900 focus:shadow-outline-green disabled:opacity-25 transition ease-in-out duration-150">
+                    <button wire:click="create()" class="inline-flex items-center px-4 py-2 mt-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 active:bg-green-600 focus:outline-none focus:border-green-900 focus:shadow-outline-green disabled:opacity-25 transition ease-in-out duration-150">
                         New Post
                     </button>
                 </div>
+
+                <div class="bg-white py-4 px-4">
+                    <livewire:post-search />
+                </div>
+
                 @if ($isOpen)
                     @include('livewire.posts.create')
                 @endif
             </div>
-            @foreach ($posts as $post)
-                <div class="mt-4">
-                    <div class="max-w-full px-5 py-5 bg-white rounded-lg shadow-md">
+            <div class="bg-white mt-4 pb-4 pt-4">
+                @foreach ($posts as $post)
+                    <div class="max-w-full pl-4 pr-4 bg-white rounded-lg">
                         <div class="mt-0">
-                            <a href="{{ url('dashboard/posts', $post->id) }}" class="text-2xl text-gray-700 font-bold hover:underline">
+                            <a href="{{ url('dashboard/posts', $post->id) }}" class="text-xl text-blue-600 font-medium hover:underline">
                                 {{ $post->title }}
                             </a>
-                            <p class="mt-2 text-gray-600">{{ Str::words($post->content, 20, '...') }}</p>
-                        </div>
-                        <div class="flex justify-between items-center mt-4">
-                            <a href="{{ url('dashboard/posts', $post->id) }}" class="text-blue-500 hover:underline">Read more</a>
-                            <div>
-                                <button wire:click="edit({{ $post->id }})"
-                                        class="inline-flex items-center px-1 py-1 bg-yellow-400 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-500 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
-                                    <svg class="h-6 w-6 text-white-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                                        />
-                                    </svg>
-                                </button>
-                                <button wire:click="delete({{ $post->id }})"
-                                        class="inline-flex items-center justify-center px-1 py-1 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-600 transition ease-in-out duration-150">
-                                    <svg class="h-6 w-6 text-white-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                                        />
-                                    </svg>
-                                </button>
-                            </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
             <div class="py-4">
                 {{ $posts->links() }}
             </div>
         </div>
         <div class="-mx-8 w-4/12 hidden lg:block">
-            <livewire:category-list/>
-            <livewire:tag-list/>
+            <div class="mt-0 px-5">
+                <h1 class="mb-4 text-xl font-bold text-gray-700">Categories</h1>
+                <div class="flex flex-col bg-white px-4 py-4 max-w-sm mx-auto rounded-lg shadow-md">
+                    <ul>
+                        @foreach ($categories as $cate)
+                            <li>
+                                <a href="{{ url('dashboard/categories/'. $cate->id .'/posts') }}" class="text-blue-600 font-semibold mx-1 hover:text-blue-600 hover:underline">
+                                    {{$cate->title}}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-5 px-5">
+                <h1 class="mb-4 text-xl font-bold text-gray-700">Tags</h1>
+                <div class="bg-white px-4 py-6 max-w-sm mx-auto rounded-lg shadow-md">
+                    @foreach ($tags as $tag)
+                        <a href="{{ url('dashboard/tags/'. $tag->id .'/posts') }}" class="text-gray-700 font-bold mx-1 hover:text-gray-600">
+                            <span class="m-1 bg-gray-200 hover:bg-gray-300 rounded-full px-2 font-bold text-sm leading-loose cursor-pointer hover:underline" >#{{$tag->title}}</span>
+                        </a>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
 </div>

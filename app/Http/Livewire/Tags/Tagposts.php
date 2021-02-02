@@ -8,6 +8,7 @@ namespace App\Http\Livewire\Tags;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -15,7 +16,7 @@ use Livewire\WithPagination;
 
 class Tagposts extends Component
 {
-    use WithPagination;
+    use WithPagination,AuthorizesRequests;
 
     public $title, $content, $category, $post_id;
     public $tagids = array();

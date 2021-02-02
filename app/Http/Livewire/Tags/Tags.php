@@ -6,17 +6,22 @@
 namespace App\Http\Livewire\Tags;
 
 use App\Models\Tag;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Tags extends Component
 {
-    public $tags, $title, $tag_id;
+    use WithPagination,AuthorizesRequests;
+
+    public $title, $tag_id;
     public $isOpen = 0;
 
     public function render()
     {
-        $this->tags = Tag::all();
-        return view('livewire.tags.tags');
+        return view('livewire.tags.tags',[
+            'tags'=>Tag::orderBy('id', 'desc')->simplePaginate()
+        ]);
     }
 
     public function store()
@@ -34,12 +39,16 @@ class Tags extends Component
 
         $this->closeModal();
         $this->resetInputFields();
+
+        return redirect('/dashboard/tags');
     }
 
     public function delete($id)
     {
         Tag::find($id)->delete();
         session()->flash('message', 'Tag Deleted Successfully.');
+
+        return redirect('/dashboard/tags');
     }
 
     public function edit($id)
@@ -49,6 +58,8 @@ class Tags extends Component
         $this->title = $tag->title;
 
         $this->openModal();
+
+        return redirect('/dashboard/tags');
     }
 
     public function create()
