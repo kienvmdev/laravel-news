@@ -2,17 +2,17 @@
     <input
         type="text"
         class="form-input w-full"
-        placeholder="Search Posts..."
+        placeholder="Search tips..."
         wire:model="query"
         wire:keydown.escape="reset"
         wire:keydown.tab="reset"
         wire:keydown.ArrowUp="decrementHighlight"
         wire:keydown.ArrowDown="incrementHighlight"
         wire:keydown.enter="selectPost"/>
-
+    <input type="hidden" wire:model="cate_id">
+    <input type="hidden" wire:model="tag_id">
     @if(!empty($query))
-        <div class="fixed top-0 right-0 bottom-0 left-0" wire:click="reset"></div>
-
+        <!--<div class="fixed top-0 right-0 bottom-0 left-0" wire:click="reset"></div>-->
         <div class="absolute p-4 z-10 list-group bg-white w-full rounded-t-none shadow-lg">
             @if(!empty($posts))
                 @foreach($posts as $i => $post)

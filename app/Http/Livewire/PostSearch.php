@@ -3,25 +3,19 @@
 namespace App\Http\Livewire;
 
 use App\Models\Post;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class PostSearch extends Component
 {
     public $query;
+    public $cate_id;
+    public $tag_id;
     public $posts;
     public $highlightIndex;
 
-    public function mount()
-    {
-        $this->reset('query', 'posts', 'highlightIndex');
-    }
-
-    public function resetFrom()
-    {
-        $this->query = '';
-        $this->posts = [];
-        $this->highlightIndex = 0;
-    }
+    public function mount(){}
 
     public function incrementHighlight()
     {
@@ -51,8 +45,19 @@ class PostSearch extends Component
 
     public function updatedQuery()
     {
-        $this->posts = Post::where('title', 'like', '%' . $this->query . '%')
-            ->get()
+        $query = Post::where('title', 'like', '%' . $this->query . '%')
+            ->orWhere('content', 'like', '%' . $this->query . '%');
+        if($this->cate_id > 0) {
+            $query->where('category_id', $this->cate_id);
+        }
+        if($this->tag_id > 0) {
+            $posts = DB::table('post_tag')
+                ->where('tag_id',$this->tag_id)
+                ->pluck('post_id')
+                ->toArray();
+            $query->whereIn('id', $posts);
+        }
+        $this->posts = $query->get()
             ->toArray();
     }
 

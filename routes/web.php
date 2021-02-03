@@ -27,11 +27,13 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('dashboard/categories', Categories::class)->name('categories');
-Route::get('dashboard/categories/{id}/posts', Categoryposts::class);
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('dashboard/categories', Categories::class)->name('categories');
+    Route::get('dashboard/categories/{id}/posts', Categoryposts::class);
 
-Route::get('dashboard/posts', Posts::class)->name('posts');
-Route::get('dashboard/posts/{id}', P::class)->name('post');
+    Route::get('dashboard/posts', Posts::class)->name('posts');
+    Route::get('dashboard/posts/{id}', P::class)->name('post');
 
-Route::get('dashboard/tags', Tags::class)->name('tags');
-Route::get('dashboard/tags/{id}/posts', Tagposts::class);
+    Route::get('dashboard/tags', Tags::class)->name('tags');
+    Route::get('dashboard/tags/{id}/posts', Tagposts::class);
+});

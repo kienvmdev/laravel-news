@@ -26,8 +26,8 @@ class Posts extends Component
     {
         return view('livewire.posts.posts', [
             'posts' => Post::orderBy('id', 'desc')->simplePaginate(),
-            'categories' => Category::all(),
-            'tags' => Tag::all(),
+            'categories' => Category::withCount('posts')->get(),
+            'tags' => Tag::withCount('posts')->get(),
         ]);
     }
 

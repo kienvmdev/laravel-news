@@ -9,6 +9,7 @@
             @if ($isOpen)
                 @include('livewire.posts.create')
             @endif
+            @markdomStyles($theme)
             <div class="grid gap-2">
                 <div class="font-medium text-xl text-blue-600">{{ $post->title }}</div>
                 <div class="flex">
@@ -18,7 +19,7 @@
                     &nbsp;on&nbsp;{{ $post->updated_at->format('F, d Y') }}
                 </div>
 
-                <div class="text-gray-700 text-base">
+                <div class="text-gray-700 text-base @php echo $post->theme;@endphp">
                     @markdom((string)$post->content)
                 </div>
 

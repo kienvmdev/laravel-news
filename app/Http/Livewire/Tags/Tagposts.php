@@ -26,7 +26,6 @@ class Tagposts extends Component
 
     public function mount($id)
     {
-        // $this->resetInputFields();
         $this->tid = $id;
     }
 
