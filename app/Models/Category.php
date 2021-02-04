@@ -13,9 +13,20 @@ class Category extends Model
         'title',
         'desc',
         'meta_data',
+        'parent_id',
     ];
 
     public function posts(){
         return $this->hasMany(Post::class);
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(Category::class, 'parent_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(Category::class, 'parent_id');
     }
 }

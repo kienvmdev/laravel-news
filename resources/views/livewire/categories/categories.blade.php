@@ -30,6 +30,7 @@
                             <th class="px-4 py-2 w-20">No.</th>
                             <th class="px-4 py-2 text-left">Title</th>
                             <th class="px-4 py-2 text-left">Description</th>
+                            <th class="px-4 py-2 text-left">Parent</th>
                             <th class="px-4 py-2 w-40">Action</th>
                         </tr>
                     </thead>
@@ -40,6 +41,7 @@
                             <td class="border px-4 py-2"><?php echo $count++; ?></td>
                             <td class="border px-4 py-2">{{ $category->title }}</td>
                             <td class="border px-4 py-2">{{ $category->desc }}</td>
+                            <td class="border px-4 py-2">{{ $category->parent_id }}</td>
                             <td class="border px-4 py-2 text-center">
                             <button wire:click="edit({{ $category->id }})"
                                 class="inline-flex items-center px-1 py-1 bg-yellow-400 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-400 active:bg-yellow-400 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">

@@ -11,16 +11,16 @@
         <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-5xl sm:w-full"
             role="dialog" aria-modal="true" aria-labelledby="modal-headline">
             <form autocomplete="off">
-                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="bg-white px-4 pt-4 pb-4 sm:pb-4">
                     <div class="">
-                        <div class="mb-4">
+                        <div class="mb-2">
                             <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Title</label>
                             <input type="text"
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="title" placeholder="Enter Title" wire:model="title">
                             @error('title') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
-                        <div class="mb-4">
+                        <div class="mb-2">
                             <label for="content" class="block text-gray-700 text-sm font-bold mb-2">Content</label>
                             <div class="h-96 flex flex-col">
                                 @markdomStyles($theme)
@@ -48,10 +48,10 @@
                             </div>
                             @error('content') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
-                        <div class="mb-4">
+                        <div class="mb-2">
                             <label for="category" class="block text-gray-700 text-sm font-bold mb-2">Category</label>
                             <select name="category" id="category" wire:model="category"
-                                class="shadow appearance-none w-full border text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline">
+                                class="shadow appearance-none w-full border text-gray-700 py-3 px-3 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline">
                                 <option value="" selected>Select Category</option>
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->title }}</option>
@@ -60,10 +60,10 @@
                             @error('category') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
 
-                        <div class="mb-4">
+                        <div class="mb-2">
                             <label for="tagids" class="block text-gray-700 text-sm font-bold mb-2">Tags</label>
                             <select multiple name="tagids[]" id="tagids[]" wire:model="tagids"
-                                class="shadow appearance-none w-full border text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline">
+                                class="shadow appearance-none w-full border text-gray-700 py-3 px-2 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline">
                                 @foreach ($tags as $tag)
                                     <option value="{{ $tag->id }}">{{ $tag->title }}</option>
                                 @endforeach
@@ -72,7 +72,7 @@
                     </div>
                 </div>
 
-                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <div class="bg-gray-50 px-4 py-4 sm:flex sm:flex-row-reverse">
                     <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
                         <button wire:click.prevent="store()" type="button"
                             class="inline-flex items-center px-4 py-2 my-3 bg-green-400 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 active:bg-green-500 focus:outline-none focus:border-green-500 focus:shadow-outline-green disabled:opacity-25 transition ease-in-out duration-150">

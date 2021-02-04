@@ -10,13 +10,14 @@ class Categories extends Component
 {
     use AuthorizesRequests;
 
-    public $title, $desc, $category_id;
+    public $title, $desc, $category_id, $parent_id;
     public $isOpen = 0;
 
     public function render()
     {
         return view('livewire.categories.categories', [
-            'categories'=>Category::orderBy('id', 'desc')->paginate(10)
+            'categories'=>Category::orderBy('id', 'desc')->paginate(10),
+            'cates'=>Category::where('parent_id', 0)->get()
         ]);
     }
 
@@ -29,7 +30,8 @@ class Categories extends Component
 
         Category::updateOrCreate(['id' => $this->category_id], [
             'title' => $this->title,
-            'desc' => $this->desc
+            'desc' => $this->desc,
+            'parent_id' => $this->parent_id,
         ]);
 
         session()->flash(
@@ -57,6 +59,7 @@ class Categories extends Component
         $this->category_id = $id;
         $this->title = $category->title;
         $this->desc = $category->desc;
+        $this->parent_id = $category->parent_id;
 
         $this->openModal();
 
@@ -84,5 +87,6 @@ class Categories extends Component
         $this->title = '';
         $this->desc = '';
         $this->category_id = '';
+        $this->parent_id = '';
     }
 }
