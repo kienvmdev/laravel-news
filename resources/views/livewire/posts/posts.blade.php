@@ -17,15 +17,16 @@
                         </div>
                     </div>
                 @endif
-                <div class="bg-white px-4">
-                    <button wire:click="create()" class="inline-flex items-center px-4 py-2 mt-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 active:bg-green-600 focus:outline-none focus:border-green-900 focus:shadow-outline-green disabled:opacity-25 transition ease-in-out duration-150">
+                @auth
+                <div class="bg-white px-4 text-right">
+                    <button wire:click="create()" class="inline-flex items-center px-4 py-2 mt-2 bg-green-400 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 active:bg-green-600 focus:outline-none focus:border-green-900 focus:shadow-outline-green disabled:opacity-25 transition ease-in-out duration-150">
                         New Tips
                     </button>
                 </div>
+                @endif
                 <div class="bg-white py-4 px-4">
                     @livewire('post-search', ['cate_id' => @$cid, 'tag_id' => @$tid])
                 </div>
-
                 @if ($isOpen)
                     @include('livewire.posts.create')
                 @endif

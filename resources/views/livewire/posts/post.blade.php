@@ -35,10 +35,14 @@
                         @endforeach
                     @endif
                 </div>
-
+                @auth
                 <div class="flex float-right mt-1">
+                    <button wire:click="backToList"
+                            class="inline-flex items-center px-2 py-1 mr-4 bg-green-400 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 active:bg-green-500 focus:outline-none focus:border-green-500 focus:shadow-outline-green disabled:opacity-25 transition ease-in-out duration-150">
+                        << Back to list
+                    </button>
                     <button wire:click="edit({{ $post->id }})"
-                            class="inline-flex items-center px-1 py-1 mr-4 bg-yellow-400 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-500 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
+                            class="inline-flex items-center px-1 py-1 mr-4 bg-yellow-400 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-500 active:bg-yellow-500 focus:outline-none focus:border-yellow-500 focus:shadow-outline-yellow disabled:opacity-25 transition ease-in-out duration-150">
                         <svg class="h-6 w-6 text-white-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path
                                 stroke-linecap="round"
@@ -60,7 +64,7 @@
                         </svg>
                     </button>
                 </div>
-
+                @endif
                 @if ($post->comments->count())
                     <div class="text-base">
                         <p class="text-gray-900 pt-2 pb-4">{{ $post->comments->count() }}

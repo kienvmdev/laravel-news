@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Categories;
 use App\Models\Category;
 use Livewire\Component;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Log;
 
 class Categories extends Component
 {
@@ -16,7 +17,7 @@ class Categories extends Component
     public function render()
     {
         return view('livewire.categories.categories', [
-            'categories'=>Category::orderBy('id', 'desc')->paginate(10),
+            'categories'=>Category::with('parent')->orderBy('id', 'desc')->paginate(),
             'cates'=>Category::where('parent_id', 0)->get()
         ]);
     }
@@ -27,6 +28,10 @@ class Categories extends Component
             'title' => 'required',
             'desc' => 'required',
         ]);
+
+        if(!$this->parent_id){
+            $this->parent_id = 0;
+        }
 
         Category::updateOrCreate(['id' => $this->category_id], [
             'title' => $this->title,

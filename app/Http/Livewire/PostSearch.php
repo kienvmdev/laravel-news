@@ -15,7 +15,9 @@ class PostSearch extends Component
     public $posts;
     public $highlightIndex;
 
-    public function mount(){}
+    public function mount(){
+
+    }
 
     public function incrementHighlight()
     {

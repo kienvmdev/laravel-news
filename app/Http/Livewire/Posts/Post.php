@@ -56,6 +56,11 @@ class Post extends Component
         $this->isOpen = false;
     }
 
+    public function backToList()
+    {
+        return redirect()->route('posts');
+    }
+
     public function store()
     {
         $this->validate([
