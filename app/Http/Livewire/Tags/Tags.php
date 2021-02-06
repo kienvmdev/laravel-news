@@ -58,8 +58,6 @@ class Tags extends Component
         $this->title = $tag->title;
 
         $this->openModal();
-
-        return redirect('/dashboard/tags');
     }
 
     public function create()

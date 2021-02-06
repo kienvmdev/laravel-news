@@ -67,8 +67,6 @@ class Categories extends Component
         $this->parent_id = $category->parent_id;
 
         $this->openModal();
-
-        return redirect('/dashboard/categories');
     }
 
     public function create()

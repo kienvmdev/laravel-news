@@ -33,8 +33,8 @@ class Tagposts extends Component
     {
         return view('livewire.posts.posts', [
             'posts' => Tag::findOrFail($this->tid)->posts()->paginate(),
-            'categories' => Category::all(),
-            'tags' => Tag::all(),
+            'categories' => Category::withCount('posts')->get(),
+            'tags' => Tag::withCount('posts')->get(),
         ]);
     }
 
