@@ -1,6 +1,22 @@
+<style>
+    ::-webkit-scrollbar-track
+    {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        background-color: #F5F5F5;
+    }
+    ::-webkit-scrollbar
+    {
+        width: 6px;
+        background-color: #F5F5F5;
+    }
+    ::-webkit-scrollbar-thumb
+    {
+        background-color: #888;
+        border: 2px solid #888;
+    }
+</style>
 <div class="fixed z-10 inset-0 overflow-y-auto ease-out duration-400">
     <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-
         <div class="fixed inset-0 transition-opacity">
             <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
         </div>
@@ -11,7 +27,7 @@
         <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-5xl sm:w-full"
             role="dialog" aria-modal="true" aria-labelledby="modal-headline">
             <form autocomplete="off">
-                <div class="bg-white px-4 pt-4 pb-4 sm:pb-4">
+                <div class="bg-white px-4 pt-4 pb-2 sm:pb-4">
                     <div class="">
                         <div class="mb-2">
                             <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Title</label>
@@ -36,11 +52,11 @@
                                 </div>
 
                                 <div class="flex flex-row flex-grow">
-                                    <div class="py-3 flex-1">
+                                    <div class="py-3 flex-1" style="height: 350px">
                                         <textarea wire:model="content" id="content" class="border h-22 w-full p-2 h-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Content"></textarea>
                                     </div>
-                                    <div class="pl-3 pt-3 pb-3 flex-1">
-                                        <div class="border h-22 w-full p-2 h-full">
+                                    <div class="pl-3 pt-3 pb-3 flex-1" style="height: 350px">
+                                        <div class="border h-22 w-full p-2 h-full" style="overflow-y: scroll">
                                             @markdom((string)$content)
                                         </div>
                                     </div>
@@ -72,7 +88,7 @@
                     </div>
                 </div>
 
-                <div class="bg-gray-50 px-4 py-4 sm:flex sm:flex-row-reverse">
+                <div class="bg-gray-50 px-4 py-2 sm:flex sm:flex-row-reverse">
                     <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
                         <button wire:click.prevent="store()" type="button"
                             class="inline-flex items-center px-4 py-2 my-3 bg-green-400 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 active:bg-green-500 focus:outline-none focus:border-green-500 focus:shadow-outline-green disabled:opacity-25 transition ease-in-out duration-150">
