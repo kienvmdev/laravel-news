@@ -7,6 +7,7 @@ use App\Http\Livewire\Posts\Post as P;
 use App\Http\Livewire\Tags\Tagposts;
 use App\Http\Livewire\Tags\Tags;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,4 +37,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('dashboard/tags', Tags::class)->name('tags');
     Route::get('dashboard/tags/{id}/posts', Tagposts::class);
+});
+Route::get('/clear-cache', function() {
+    $exitCode = Artisan::call('config:cache');
+    $exitCode = Artisan::call('cache:clear');
+    $exitCode = Artisan::call('view:clear');
+    $exitCode = Artisan::call('route:cache');
+
+    return response()->json([
+        'status' => 'Success',
+        'message' => 'Cache is cleared',
+    ]);
 });

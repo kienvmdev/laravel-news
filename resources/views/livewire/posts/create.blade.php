@@ -24,7 +24,7 @@
         <!-- This element is to trick the browser into centering the modal contents. -->
         <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>​
 
-        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-5xl sm:w-full"
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-6xl sm:w-full"
             role="dialog" aria-modal="true" aria-labelledby="modal-headline">
             <form autocomplete="off">
                 <div class="bg-white px-4 pt-4 pb-2 sm:pb-4">
@@ -52,10 +52,10 @@
                                 </div>
 
                                 <div class="flex flex-row flex-grow">
-                                    <div class="py-3 flex-1" style="height: 350px">
+                                    <div class="py-3 flex-1" style="height: 350px;width: 50%;">
                                         <textarea wire:model="content" id="content" class="border h-22 w-full p-2 h-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Content"></textarea>
                                     </div>
-                                    <div class="pl-3 pt-3 pb-3 flex-1" style="height: 350px">
+                                    <div class="pl-3 pt-3 pb-3 flex-1" style="height: 350px;width: 50%">
                                         <div class="border h-22 w-full p-2 h-full" style="overflow-y: scroll">
                                             @markdom((string)$content)
                                         </div>
